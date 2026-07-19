@@ -17,9 +17,12 @@ import joblib
 import os
 
 # DATA LOAD AND X | Y CREATE
-data = fetch_california_housing()
-df = pd.DataFrame(data['data'], columns = data['feature_names'])
-df['target'] = data['target']
+try:
+    data = fetch_california_housing()
+    df = pd.DataFrame(data['data'], columns = data['feature_names'])
+    df['target'] = data['target']
+except:
+    pd.read_csv("House.csv")
 cols = ["MedInc"	,"HouseAge"	,"AveRooms"	,"AveBedrms"	,"Population"	,"AveOccup"]
 X = df[cols]
 y = df['target']
